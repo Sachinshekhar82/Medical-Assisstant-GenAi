@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}History{% endblock %}
+{% block content %}
+<h2>Your Query History</h2>
+{% if history %}
+  <ul class="history-list">
+    {% for item in history %}
+      <li>
+        <strong>Query ({{ item.timestamp.strftime('%Y-%m-%d %H:%M') }}):</strong><br/>
+        {{ item.question }}<br/><br/>
+        <strong>Response:</strong><br/>
+        {{ item.answer }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>You have no saved history.</p>
+{% endif %}
+{% endblock %}

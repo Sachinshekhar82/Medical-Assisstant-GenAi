@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Medical Advisor{% endblock %}
+{% block content %}
+<header>
+  <h1>Your Trusted Medical Advisor</h1>
+  <p class="lead">Get accurate and reliable medical advice tailored to your concerns.</p>
+</header>
+
+<form method="post">
+  <label for="user_input">Enter Your Medical Query:</label>
+  <textarea id="user_input" name="user_input" placeholder="Describe your symptoms, concerns, or questions..." required>{{ user_input|default("") }}</textarea>
+
+  <label for="language">Select Language:</label>
+  <select id="language" name="language">
+    <option value="en" {% if selected_lang == 'en' %}selected{% endif %}>English</option>
+    <option value="hi" {% if selected_lang == 'hi' %}selected{% endif %}>Hindi</option>
+    <option value="es" {% if selected_lang == 'es' %}selected{% endif %}>Spanish</option>
+    <option value="fr" {% if selected_lang == 'fr' %}selected{% endif %}>French</option>
+    <option value="de" {% if selected_lang == 'de' %}selected{% endif %}>German</option>
+    <option value="ta" {% if selected_lang == 'ta' %}selected{% endif %}>Tamil</option>
+  </select>
+
+  <input type="submit" value="Get Advice" />
+</form>
+
+{% if response %}
+<section class="response" aria-live="polite" role="region">
+  <h2>Medical Response</h2>
+  <p>{{ response }}</p>
+</section>
+{% endif %}
+{% endblock %}
